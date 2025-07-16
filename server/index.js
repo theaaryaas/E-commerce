@@ -113,7 +113,17 @@ app.use('/api/payments', paymentRoutes);
 app.use('/api/users', userRoutes);
 
 // Serve uploaded images statically
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', cors({
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      return callback(null, true);
+    } else {
+      return callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+}), express.static(path.join(__dirname, 'uploads')));
 
 // 404 handler
 app.use('*', (req, res) => {
