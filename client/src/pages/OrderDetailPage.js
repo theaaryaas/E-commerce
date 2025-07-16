@@ -237,7 +237,7 @@ const OrderDetailPage = () => {
                   {(order.items || []).map((item, index) => (
                     <div key={index} className="flex items-center space-x-4 p-4 border border-gray-200 rounded-lg">
                       <img 
-                        src={item.image} 
+                        src={item.image?.startsWith('http') ? item.image : `${process.env.REACT_APP_API_URL}${item.image}`}
                         alt={item.name} 
                         className="w-16 h-16 object-cover rounded"
                       />
