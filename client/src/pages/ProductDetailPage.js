@@ -19,7 +19,7 @@ const ProductDetailPage = () => {
       setLoading(true);
       setError(null);
       try {
-        const res = await axios.get(`/api/products/${id}`);
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/products/${id}`);
         setProduct(res.data.data);
       } catch (err) {
         setError(err.response?.data?.message || 'Failed to fetch product.');
