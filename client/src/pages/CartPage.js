@@ -59,7 +59,7 @@ const CartPage = () => {
                   {items.map((item) => (
                     <tr key={item.product._id}>
                       <td className="py-2">
-                        <img src={item.product.images?.[0]} alt={item.product.name} className="h-12 w-12 object-contain rounded" />
+                        <img src={item.product.images?.[0]?.startsWith('http') ? item.product.images[0] : `${process.env.REACT_APP_API_URL}${item.product.images?.[0]}`} alt={item.product.name} className="h-12 w-12 object-contain rounded" />
                       </td>
                       <td className="py-2 font-medium">
                         <Link to={`/products/${item.product._id}`} className="text-blue-700 hover:underline">{item.product.name}</Link>

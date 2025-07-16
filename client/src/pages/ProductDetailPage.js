@@ -51,7 +51,7 @@ const ProductDetailPage = () => {
           <div className="flex flex-col md:flex-row gap-8 bg-white rounded shadow p-6">
             <div className="flex-shrink-0 flex justify-center items-center md:w-1/2">
               <img
-                src={product.images?.[0] || '/placeholder.png'}
+                src={product.images?.[0]?.startsWith('http') ? product.images[0] : `${process.env.REACT_APP_API_URL}${product.images?.[0]}` || '/placeholder.png'}
                 alt={product.name}
                 className="w-full max-w-xs h-72 object-contain rounded"
               />

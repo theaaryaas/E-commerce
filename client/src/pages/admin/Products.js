@@ -138,7 +138,7 @@ const AdminProducts = () => {
                   <tr key={product._id}>
                     <td className="px-4 py-2 border-b">
                       {product.images && product.images.length > 0 ? (
-                        <img src={product.images[0]} alt={product.name} className="h-12 w-12 object-contain rounded" />
+                        <img src={product.images[0]?.startsWith('http') ? product.images[0] : `${process.env.REACT_APP_API_URL}${product.images[0]}`} alt={product.name} className="h-12 w-12 object-contain rounded" />
                       ) : (
                         <span className="text-gray-400">No image</span>
                       )}

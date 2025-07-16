@@ -59,7 +59,7 @@ const ProductsPage = () => {
                 <div className="aspect-w-1 aspect-h-1 w-full bg-gray-100 rounded-t-lg overflow-hidden flex items-center justify-center">
                   {product.images && product.images.length > 0 ? (
                     <img
-                      src={product.images[0]}
+                      src={product.images[0]?.startsWith('http') ? product.images[0] : `${process.env.REACT_APP_API_URL}${product.images[0]}`}
                       alt={product.name}
                       className="object-contain h-40 w-full"
                     />
