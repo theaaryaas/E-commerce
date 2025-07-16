@@ -1,6 +1,23 @@
+![Build Status](https://img.shields.io/github/actions/workflow/status/theaaryaas/E-commerce/node.js.yml?branch=main)
+![GitHub last commit](https://img.shields.io/github/last-commit/theaaryaas/E-commerce)
+![GitHub license](https://img.shields.io/github/license/theaaryaas/E-commerce)
+![GitHub repo size](https://img.shields.io/github/repo-size/theaaryaas/E-commerce)
+![E-commerce](https://img.shields.io/badge/E--commerce-live-brightgreen)
+
 # E-Commerce Website
 
-A full-stack e-commerce platform built with React, Node.js, Express, and MongoDB. Features include user authentication, product catalog, shopping cart, payment processing with Stripe, and comprehensive order management.
+## 📝 About
+
+This project is a full-featured, modern e-commerce platform designed for both customers and administrators. Built with a React frontend and a Node.js/Express backend, it leverages MongoDB for data storage and Stripe for secure payment processing. The platform supports user authentication, product browsing, shopping cart management, order processing, and an admin dashboard for managing products, users, and orders. The codebase is modular and scalable, making it suitable for learning, personal projects, or as a foundation for a production e-commerce site.
+
+Key highlights:
+- Modern tech stack: React, Redux Toolkit, Node.js, Express, MongoDB, Stripe
+- Secure authentication and authorization with JWT
+- Responsive, mobile-friendly UI with Tailwind CSS
+- Real-world features: product reviews, order tracking, admin controls
+- Easy local setup and extensible architecture
+
+---
 
 ## 🚀 Features
 
