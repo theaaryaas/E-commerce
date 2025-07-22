@@ -1,19 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import api from '../../utils/axios';
 
 // Async thunks
 export const fetchCart = createAsyncThunk(
   'cart/fetchCart',
   async (_, { rejectWithValue }) => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      // Don't even try to fetch if not logged in
-      return rejectWithValue('Not authenticated');
-    }
     try {
-      const response = await axios.get('/api/cart', {
-        headers: { Authorization: `Bearer ${token}` }
-      });
+      const response = await api.get('/api/cart');
       return response.data.data;
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || 'Failed to fetch cart');
@@ -25,11 +18,7 @@ export const addToCart = createAsyncThunk(
   'cart/addToCart',
   async ({ productId, quantity }, { rejectWithValue }) => {
     try {
-      const token = localStorage.getItem('token');
-      const response = await axios.post('/api/cart', 
-        { productId, quantity },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+      const response = await api.post('/api/cart', { productId, quantity });
       return response.data.data;
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || 'Failed to add to cart');
@@ -41,11 +30,7 @@ export const updateCartItem = createAsyncThunk(
   'cart/updateCartItem',
   async ({ productId, quantity }, { rejectWithValue }) => {
     try {
-      const token = localStorage.getItem('token');
-      const response = await axios.put(`/api/cart/${productId}`, 
-        { quantity },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+      const response = await api.put(`/api/cart/${productId}`, { quantity });
       return response.data.data;
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || 'Failed to update cart');
@@ -57,10 +42,7 @@ export const removeFromCart = createAsyncThunk(
   'cart/removeFromCart',
   async (productId, { rejectWithValue }) => {
     try {
-      const token = localStorage.getItem('token');
-      const response = await axios.delete(`/api/cart/${productId}`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
+      const response = await api.delete(`/api/cart/${productId}`);
       return response.data.data;
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || 'Failed to remove from cart');
@@ -72,10 +54,7 @@ export const clearCart = createAsyncThunk(
   'cart/clearCart',
   async (_, { rejectWithValue }) => {
     try {
-      const token = localStorage.getItem('token');
-      const response = await axios.delete('/api/cart', {
-        headers: { Authorization: `Bearer ${token}` }
-      });
+      const response = await api.delete('/api/cart');
       return response.data.data;
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || 'Failed to clear cart');
